@@ -685,10 +685,9 @@ body.default {
 
 footer {
   text-align: center;
-  padding: 10px;
-  background-color: #f2f2f2; /* optional: aesthetic background */
-  color: #333; /* optional: adjust text color */
-  position: relative;
-  bottom: 0;
+  padding: 15px;
+  background-color: #f2f2f2;
+  color: #333;
   width: 100%;
+  margin-top: 40px; /* optional spacing from content */
 }
