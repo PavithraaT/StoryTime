@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoryTime - 1-Min Motivational Stories</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Falling Petals -->
+    <div id="petals"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">StoryTime</h1>
+            <p class="subtitle">1-Minute Stories of Success, Kindness & Growth</p>
+        </div>
+
+        <div class="filter-section">
+            <h3 class="filter-title">🎯 Smart Story Filtering</h3>
+            
+            <div class="filter-tabs">
+                <div class="filter-tab active" data-filter="all" onclick="setFilter('all')">
+                    ✨ All Stories
+                </div>
+                <div class="filter-tab" data-filter="success" onclick="setFilter('success')">
+                    🏆 Success
+                </div>
+                <div class="filter-tab" data-filter="kindness" onclick="setFilter('kindness')">
+                    💝 Kindness
+                </div>
+                <div class="filter-tab" data-filter="growth" onclick="setFilter('growth')">
+                    🌱 Growth
+                </div>
+                <div class="filter-tab" data-filter="inspiration" onclick="setFilter('inspiration')">
+                    🌟 Inspiration
+                </div>
+            </div>
+
+            <div class="mood-selector">
+                <div class="mood-emoji" data-mood="happy" onclick="selectMood('happy')" title="Need some joy">😊</div>
+                <div class="mood-emoji" data-mood="motivated" onclick="selectMood('motivated')" title="Need motivation">💪</div>
+                <div class="mood-emoji" data-mood="calm" onclick="selectMood('calm')" title="Need peace">🧘</div>
+                <div class="mood-emoji" data-mood="hopeful" onclick="selectMood('hopeful')" title="Need hope">🌈</div>
+                <div class="mood-emoji" data-mood="inspired" onclick="selectMood('inspired')" title="Need inspiration">✨</div>
+            </div>
+
+            <div class="smart-suggestion" id="smartSuggestion">
+                💡 Select your mood above to get personalized story recommendations!
+            </div>
+        </div>
+
+        <div class="theme-selector">
+            <h3 class="theme-title">🎨 Seasonal Themes</h3>
+            
+            <div class="theme-options">
+                <button class="theme-btn spring" data-theme="spring" onclick="changeTheme('spring')">
+                    🌸 Spring
+                </button>
+                <button class="theme-btn summer" data-theme="summer" onclick="changeTheme('summer')">
+                    ☀️ Summer
+                </button>
+                <button class="theme-btn autumn" data-theme="autumn" onclick="changeTheme('autumn')">
+                    🍂 Autumn
+                </button>
+                <button class="theme-btn winter" data-theme="winter" onclick="changeTheme('winter')">
+                    ❄️ Winter
+                </button>
+                <button class="theme-btn default active" data-theme="default" onclick="changeTheme('default')">
+                    🌈 Galaxy
+                </button>
+            </div>
+        </div>
+
+        <div class="sound-player">
+            <h3 class="sound-title">🎵 Ambient Sounds</h3>
+            
+            <div class="sound-options">
+                <button class="sound-btn" data-sound="rain" onclick="selectSound('rain')">
+                    🌧️ Rain
+                </button>
+                <button class="sound-btn" data-sound="forest" onclick="selectSound('forest')">
+                    🌲 Forest
+                </button>
+                <button class="sound-btn" data-sound="ocean" onclick="selectSound('ocean')">
+                    🌊 Ocean
+                </button>
+                <button class="sound-btn" data-sound="piano" onclick="selectSound('piano')">
+                    🎹 Piano
+                </button>
+                <button class="sound-btn" data-sound="cafe" onclick="selectSound('cafe')">
+                    ☕ Café
+                </button>
+            </div>
+
+            <div class="sound-controls">
+                <button class="play-pause-btn" id="playPauseBtn" onclick="togglePlayPause()">
+                    ▶️ Play
+                </button>
+                
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" 
+                           min="0" max="100" value="50" onchange="adjustVolume()">
+                </div>
+            </div>
+
+            <div class="sound-visualizer" id="soundVisualizer">
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+                <div class="sound-bar"></div>
+            </div>
+        </div>
+
+        <div class="reading-time">
+            📖 Estimated reading time: <span id="readingTime">1 min</span>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="story-container">
+            <div class="story-card" id="storyCard">
+                <h2 class="story-title" id="storyTitle">The Coffee Shop Miracle</h2>
+                <div class="story-content" id="storyContent">
+                    Sarah rushed into the coffee shop, already 20 minutes late for her job interview. As she fumbled for her wallet, she realized she'd forgotten it at home. Tears welled up in her eyes.
+                    
+                    <br><br>An elderly man behind her stepped forward. "I'll get this one," he smiled warmly. "We all need a little help sometimes."
+                    
+                    <br><br>Sarah thanked him profusely and rushed to her interview. Three months later, as the newly hired marketing director, she implemented a company policy: free coffee for anyone having a tough day.
+                    
+                    <br><br>That elderly man? He never knew his simple act of kindness would touch hundreds of lives through Sarah's initiative.
+                </div>
+                <div class="key-takeaway" id="keyTakeaway">
+                    ✨ Key Takeaway: Small acts of kindness create ripples that can change the world, one person at a time.
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn filter-btn" onclick="getSmartRecommendation()">
+                🎲 Smart Pick
+            </button>
+            <button class="btn" onclick="shuffleStory()">
+                ✨ Random Story
+            </button>
+            <button class="btn" onclick="toggleReadingMode()">
+                📖 Focus Mode
+            </button>
+        </div>
+
+        <div class="smiley-container">
+            <div class="smiley" onclick="showEncouragement()">😊</div>
+            <p class="feeling-text">Feeling better?</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
